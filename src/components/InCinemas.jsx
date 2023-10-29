@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import { MovieItem } from "./styleComponents/styledComponents";
 import { getRequestedMovies } from "../services/now_playing";
-import { useDispatch } from "react-redux";
-import { setNowInCinema } from "../redux/slice";
+import { useSelector } from "react-redux";
 
 export const InCinemas = () => {
-  const dispatch = useDispatch();
-  const [movieResponse, setMovieResponse] = useState([]);
-  useEffect(() => {
-    getRequestedMovies(setMovieResponse);
-  }, []);
-  dispatch(setNowInCinema([movieResponse]));
-
+  const nowPlayingList = useSelector((state) => state.nowInCinema.nowInCinema);
   return (
     <>
-      {movieResponse.length > 0
-        ? movieResponse.map((title) => (
+      {nowPlayingList.length > 0
+        ? nowPlayingList.map((title) => (
             <MovieItem key={title.id}>{title.title}</MovieItem>
           ))
         : ""}

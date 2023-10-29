@@ -5,8 +5,17 @@ import { FavoritePage } from "./pages/Favorite";
 import HomePage from "./pages/HomePage";
 import { SearchPage } from "./pages/Search";
 import { MovieContainer } from "./components/styleComponents/styledComponents";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { InitializeData } from "./redux/slice";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(InitializeData());
+  }, []);
+  // const nowPlayingList = useSelector((state) => state.nowInCinema);
+  // console.log(nowPlayingList);
   return (
     <Router>
       <Header />

@@ -12,6 +12,7 @@ const options = {
 
 export const getNowPlay = async () => {
   const response = axios.request(options);
+
   return response;
 };
 

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getNowPlay } from "../services/now_playing";
 
 export const userSlice = createSlice({
   name: "user",
@@ -15,7 +16,7 @@ export const userSlice = createSlice({
 });
 
 export const nowInCinemaSlice = createSlice({
-  name: "Now In Cinema :",
+  name: "Now In Cinema",
   initialState: { nowInCinema: [] },
   reducers: {
     setNowInCinema: (state, action) => {
@@ -24,16 +25,12 @@ export const nowInCinemaSlice = createSlice({
   },
 });
 
-export const exampleSlice = createSlice({
-  name: "test",
-  initialState: { example: null },
-  reducers: {
-    setExample: (state, action) => {
-      state.example = action.payload;
-    },
-  },
-});
+export const InitializeData = () => {
+  return async (dispatch) => {
+    const notes = await getNowPlay();
+    dispatch(setNowInCinema(notes.data.results));
+  };
+};
 
 export const { setUser } = userSlice.actions;
-export const { setExample } = exampleSlice.actions;
 export const { setNowInCinema } = nowInCinemaSlice.actions;
