@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import { MovieItem } from "./styleComponents/styledComponents";
-import { getRequestedMovies } from "../services/now_playing";
+
 import { useSelector } from "react-redux";
 
 export const InCinemas = () => {
