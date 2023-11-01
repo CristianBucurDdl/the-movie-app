@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { getRequestedMovies } from "../services/search_movie";
-import axios from "axios";
+import { useState } from "react";
+import { getSearchResult } from "../services/search_movie";
+
+import { MovieItem } from "../components/styleComponents/styledComponents";
 
 export const SearchPage = () => {
   const [searchBy, setSearchBy] = useState("");
@@ -11,25 +12,10 @@ export const SearchPage = () => {
     setSearchBy(e.target.value);
   };
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MTdmOWY1YjRiNDc1MzJhNWQ1NzNjZmJhYTNjNTU2YyIsInN1YiI6IjYzMWY0ZGM5ZjYyMWIyMDA3YzA3OGYzYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sAWGFzpnkcnw912_wJD-glAjUWOTqiMNvA4zT2fFmW4",
-    },
-  };
   const search = () => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/search/movie?query=${searchBy}&include_adult=true&language=en-US`,
-        options
-      )
-      .then((response) => {
-        setReturnedSearchMovies(response.data.results);
-      });
+    getSearchResult(setReturnedSearchMovies, searchBy);
   };
-  console.log(returnedSearchMovies);
+
   return (
     <div>
       Search
@@ -37,6 +23,11 @@ export const SearchPage = () => {
         <input type="text" onChange={defineSearchCriteria}></input>
       </form>
       <button onClick={() => search()}>Search</button>
+      {returnedSearchMovies.length > 0
+        ? returnedSearchMovies.map((title) => (
+            <MovieItem key={title.id}>{title.title}</MovieItem>
+          ))
+        : ""}
     </div>
   );
 };

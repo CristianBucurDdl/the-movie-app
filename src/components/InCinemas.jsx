@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 
 export const InCinemas = () => {
   const nowPlayingList = useSelector((state) => state.nowInCinema.nowInCinema);
+  const dataToJson = nowPlayingList[0];
+  console.log(dataToJson);
   return (
     <>
       {nowPlayingList.length > 0
