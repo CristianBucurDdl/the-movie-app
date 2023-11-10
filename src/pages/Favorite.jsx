@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
-import { MovieItem } from "../components/styleComponents/styledComponents";
-import axios from "axios";
+import { GeneralMovieBox } from "../components/GeneralMovieBox";
+import { useSelector } from "react-redux";
+
 export const FavoritePage = () => {
-  const [favMovies, setFavMovies] = useState([{ title: "test" }]);
-  // useEffect(()=>{
-  //   const nowPlayingList = useSelector((state) => state.nowInCinema.nowInCinema);
-  // })
+  const favoriteList = useSelector((state) => state.nowInCinema.favoriteMovies);
 
   return (
     <div>
       Favorites
-      {favMovies
-        ? favMovies.map((title) => (
-            <MovieItem key={title.id}>{title.title}</MovieItem>
+      {favoriteList
+        ? favoriteList.map((title) => (
+            <GeneralMovieBox
+              key={title.id + 1}
+              title={title.title}
+              id={title.id}
+            />
           ))
         : ""}
     </div>

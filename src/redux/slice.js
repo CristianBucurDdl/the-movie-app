@@ -38,6 +38,14 @@ export const InitializeData = () => {
     dispatch(setFavoriteMovies(favoriteMovies.data.results));
   };
 };
+export const InitializeFavorites = () => {
+  return async (dispatch) => {
+    const favoriteMovies = await getFavoriteMovies();
+    console.log(favoriteMovies.data.results);
+
+    dispatch(setFavoriteMovies(favoriteMovies.data.results));
+  };
+};
 
 export const { setUser } = userSlice.actions;
 export const { setNowInCinema } = nowInCinemaSlice.actions;

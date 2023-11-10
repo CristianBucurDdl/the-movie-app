@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getSearchResult } from "../services/search_movie";
 
-import { MovieItem } from "../components/styleComponents/styledComponents";
+import { GeneralMovieBox } from "../components/GeneralMovieBox";
 
 export const SearchPage = () => {
   const [searchBy, setSearchBy] = useState("");
@@ -12,20 +12,31 @@ export const SearchPage = () => {
     setSearchBy(e.target.value);
   };
 
-  const search = () => {
+  const handSubbmit = (event) => {
+    event.preventDefault();
     getSearchResult(setReturnedSearchMovies, searchBy);
   };
-
   return (
     <div>
       Search
-      <form>
-        <input type="text" onChange={defineSearchCriteria}></input>
+      <form onSubmit={handSubbmit}>
+        <input
+          type="text"
+          name="searchInput"
+          onChange={defineSearchCriteria}
+        ></input>
+        <button>add</button>
       </form>
-      <button onClick={() => search()}>Search</button>
+      {/* <button onClick={() => search()}>Search</button> */}
       {returnedSearchMovies.length > 0
         ? returnedSearchMovies.map((title) => (
-            <MovieItem key={title.id}>{title.title}</MovieItem>
+            <>
+              <GeneralMovieBox
+                key={title.id + 1}
+                title={title.title}
+                id={title.id}
+              />
+            </>
           ))
         : ""}
     </div>
