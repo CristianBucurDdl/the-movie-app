@@ -17,18 +17,20 @@ function App() {
   // const nowPlayingList = useSelector((state) => state.nowInCinema);
   // console.log(nowPlayingList);
   return (
-    <Router>
-      <Header />
-      <MovieContainer>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+    <div>
+      <Router>
+        <Header />
+        <MovieContainer>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
 
-          <Route path="/search" element={<SearchPage />} />
+            <Route path="/search" element={<SearchPage />} />
 
-          <Route path="/favorite" element={<FavoritePage />} />
-        </Routes>
-      </MovieContainer>
-    </Router>
+            <Route path="/favorite" element={<FavoritePage />} />
+          </Routes>
+        </MovieContainer>
+      </Router>
+    </div>
   );
 }
 

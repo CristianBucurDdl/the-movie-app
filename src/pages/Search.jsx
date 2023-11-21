@@ -25,9 +25,8 @@ export const SearchPage = () => {
           name="searchInput"
           onChange={defineSearchCriteria}
         ></input>
-        <button>add</button>
+        <button>Search</button>
       </form>
-      {/* <button onClick={() => search()}>Search</button> */}
       {returnedSearchMovies.length > 0
         ? returnedSearchMovies.map((title) => (
             <>
