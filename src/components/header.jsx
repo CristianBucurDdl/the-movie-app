@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import SearchSvg from "../assets/search.svg?react";
 import HomeSvg from "../assets/home.svg?react";
 import StarSvg from "../assets/star.svg?react";

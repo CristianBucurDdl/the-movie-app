@@ -28,13 +28,9 @@ export const SearchPage = () => {
         <button>Search</button>
       </form>
       {returnedSearchMovies.length > 0
-        ? returnedSearchMovies.map((title) => (
+        ? returnedSearchMovies.map((obj) => (
             <>
-              <GeneralMovieBox
-                key={title.id + 1}
-                title={title.title}
-                id={title.id}
-              />
+              <GeneralMovieBox obj={obj} />
             </>
           ))
         : ""}
